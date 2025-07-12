@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Saved Messages</title>
+</head>
+<body>
+    <h2>All Messages 📩</h2>
+    {% for msg in messages %}
+        <div style="border:1px solid #ddd; padding:10px; margin:10px 0;">
+            <strong>Name:</strong> {{ msg.name }}<br>
+            <strong>Email:</strong> {{ msg.email }}<br>
+            <strong>Message:</strong> {{ msg.message }}<br>
+            <small>Sent at: {{ msg.sent_at }}</small>
+        </div>
+    {% endfor %}
+</body>
+</html>

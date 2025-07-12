@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TodoIt</title>
+    <style>
+        body { 
+            font-family: Arial; 
+            max-width: 800px; 
+            margin: auto; 
+            padding: 20px;
+        }
+        .task { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 10px; 
+            border-bottom: 1px solid #ccc; 
+        }
+        .completed { 
+            text-decoration: line-through; 
+            color: gray; 
+        }
+
+        input[type="text"], 
+        input[type="date"], 
+        select { 
+            padding: 8px; 
+            width: 100%; 
+            margin-bottom: 10px; 
+        }
+        button {
+            padding: 8px 12px; 
+            margin-left: 5px; 
+        }
+        .form-inline { 
+            display: inline; 
+        }
+    </style>
+</head>
+<body>
+    <h2>✅ TodoIt - Smart To-Do List</h2>
+
+    <form method="GET">
+        <input type="text" name="q" placeholder="Search tasks..." value="{{ request.GET.q }}">
+        <button type="submit">🔍</button>
+    </form>
+
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button name="add_task" type="submit">➕ Add Task</button>
+    </form>
+
+    <hr>
+
+    {% for task in tasks %}
+        <div class="task">
+    <form method="POST" class="form-inline">
+        {% csrf_token %}
+        <input type="hidden" name="toggle" value="{{ task.id }}">
+        <input type="checkbox" onChange="this.form.submit()" {% if task.completed %}checked{% endif %}>
+    </form>
+
+    <span class="{% if task.completed %}completed{% endif %}">
+        <strong>{{ task.title }}</strong> | Due: {{ task.due_date }} | Priority: {{ task.priority }}
+    </span>
+
+    <a style="text-decoration: none;" href="{% url 'edit' task.id %}">✏️</a>
+
+    <form method="POST" class="form-inline">
+        {% csrf_token %}
+        <input type="hidden" name="delete" value="{{ task.id }}">
+        <button type="submit">❌</button>
+    </form>
+</div>
+
+    {% empty %}
+        <p>No tasks found.</p>
+    {% endfor %}
+</body>
+</html>

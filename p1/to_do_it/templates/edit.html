@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Task</title>
+</head>
+<body>
+    <h2>📝 Edit Task</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="hidden" name="task_id" value="{{ task.id }}">
+        <button name="update" type="submit">✅ Update Task</button>
+    </form>
+</body>
+</html>

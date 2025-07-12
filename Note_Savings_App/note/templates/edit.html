@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head><title>Edit Note</title></head>
+<body>
+    <h2>✏️ Edit Note</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Update</button>
+        <a href="/">Back</a>
+    </form>
+</body>
+</html>

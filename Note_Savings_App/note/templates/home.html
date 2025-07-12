@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Notes App</title>
+    <style>
+        body { font-family: Arial; max-width: 800px; margin: auto; padding: 20px; }
+        .note { border: 1px solid #ccc; padding: 15px; margin: 10px 0; }
+        a { margin-right: 10px; }
+    </style>
+</head>
+<body>
+    <h1>🗒️ Notes</h1>
+
+    <form method="GET">
+        <input type="text" name="q" placeholder="Search by title..." value="{{ request.GET.q }}">
+        <button type="submit">Search</button>
+        <a href="{% url 'add_note' %}">➕ Add Note</a>
+    </form>
+
+    <hr>
+
+    {% for note in notes %}
+        <div class="note">
+            <h3>{{ note.title }}</h3>
+            <p>{{ note.content|linebreaks }}</p>
+            <small>Created at: {{ note.created_at }}</small><br>
+            <a href="{% url 'edit_note' note.id %}">✏️ Edit</a>
+            <a href="{% url 'delete_note' note.id %}">❌ Delete</a>
+        </div>
+    {% empty %}
+        <p>No notes found.</p>
+    {% endfor %}
+</body>
+</html>
