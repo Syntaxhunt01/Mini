@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>BMI Calculator</title>
+    <style>
+        body {
+            font-family: Arial;
+            max-width: 500px;
+            margin: auto;
+            padding: 40px;
+            text-align: center;
+            background-color: #f4f4f4;
+        }
+
+        input, button {
+            padding: 10px;
+            margin: 10px;
+            width: 80%;
+        }
+
+        .result {
+            font-size: 20px;
+            margin-top: 20px;
+            font-weight: bold;
+        }
+
+        h2 {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h2>🧮 BMI Calculator</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="weight" placeholder="Weight in kg" required>
+        <input type="text" name="height" placeholder="Height in cm" required>
+        <button type="submit">Calculate BMI</button>
+    </form>
+
+    {% if bmi %}
+        <div class="result">
+            Your BMI is: {{ bmi }}<br>
+            Category: {{ category }}
+        </div>
+    {% endif %}
+</body>
+</html>

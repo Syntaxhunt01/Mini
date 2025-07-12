@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Calculator App</title>
+    <style>
+        body { font-family: Arial; padding: 40px; max-width: 400px; margin: auto; text-align: center; }
+        input, select, button { padding: 10px; margin: 10px; width: 80%; }
+        .result { font-size: 20px; font-weight: bold; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h2>🧮 Simple Calculator</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+        <input type="text" name="num1" placeholder="Enter first number" required>
+        <input type="text" name="num2" placeholder="Enter second number" required>
+
+        <select name="operator" required>
+            <option value="">Select Operation</option>
+            <option value="+">Addition (+)</option>
+            <option value="-">Subtraction (-)</option>
+            <option value="*">Multiplication (×)</option>
+            <option value="/">Division (÷)</option>
+        </select>
+
+        <button type="submit">Calculate</button>
+    </form>
+
+    {% if result is not None %}
+        <div class="result">Result: {{ result }}</div>
+    {% endif %}
+</body>
+</html>
