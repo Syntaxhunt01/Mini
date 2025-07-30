@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body class="main-bg">
+    <div class="continer fade-in">
+        <h1>{{ question.form }}</h1>
+        <h1>{{ question.text }}</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Option</th>
+            <th>Votes</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for option in question.options.all %}
+        <tr>
+            <td>{{ option.text }}</td>
+            <td>{{ option.votes }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+        <a href="{% url 'index' %}" class="btn" style="margin-top: 20px; display: inline-block;">← Back to Polls</a>
+
+    </div>
+</body>
+</html>

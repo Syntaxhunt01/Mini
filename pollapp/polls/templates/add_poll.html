@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Poll</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body class="main-bg">
+    <div class="continer fade-in">
+        <h1>Add New Poll</h1>
+        <form method="post">
+    {% csrf_token %}
+    {{ question_form }}
+    <br>
+    <!-- options inputs -->
+    <input type="text" name="options" placeholder="Option 1" class="input" required>
+    <input type="text" name="options" placeholder="Option 2" class="input" required>
+    <input type="text" name="options" placeholder="Option 3" class="input">
+    <input type="text" name="options" placeholder="Option 4" class="input">
+    <br><br>
+    <button type="submit" class="btn">Create</button>
+</form>
+
+        <a href="{% url 'index' %}">Back to list</a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Quote</title>
+    <link rel="stylesheet" href="{% static 'quote.css' %}">
+</head>
+<body>
+    <div class="quote-box bounce-in-top">
+        <h1><a style="color: rgb(80, 80, 80); text-decoration: none;"  href="{% url 'add_quote' %}">Add Quote</a></h1>
+        <br>
+        {% if quote %}
+            <div class="quote-text">“{{ quote.text }}”</div>
+            <div class="quote-author">-- {{ quote.author }}</div>
+        {% else %}
+            <div class="quote-text">No quotes available.</div>
+        {% endif %}
+    </div>
+</body>
+</html>

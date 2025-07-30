@@ -1,0 +1,21 @@
+body{
+    font-family: sans-serif;
+    background: #e3e3e3;
+    text-align: center;
+    padding: 50px;
+}
+.container{
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 30px 30px 12px rgba(42, 42, 42, 0.564);
+    display: inline-block;
+}
+input, button{
+    padding: 10px;
+    display: inline-block;
+}
+.result {
+    margin-top: 30px;
+    text-align: left;
+}

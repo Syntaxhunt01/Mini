@@ -1,0 +1,44 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dictionary App</title>
+    <link rel="stylesheet", href="{% static 'dict/style.css' %}">
+
+</head>
+<body>
+    <div class="container">
+        <h1>📘 Dictionary</h1>
+        <form method="POST">
+            {% csrf_token %}
+            <input type="text", name="word", placeholder="Enter a word ..." required>
+            <button type="submit">Search</button>
+        </form>
+
+        {% if result %}
+        <div class="result">
+            <h2>{{ result.word }}</h2>
+            <p><strong>Phonetics:</strong>{{ result.phonetics }}</p>
+            <p><strong>Part of Speech:</strong>{{ result.part_of_speech }}</p>
+            <p><strong>Definition:</strong>{{ result.definition }}</p>
+            {% if result.example %}
+            <p><strong>Example:</strong>{{ result.example }}</p>
+            {% endif %}
+            {% if result.audio %}
+            <audio controls>
+                <source src="{{ result.audio }}" type="audio/mpeg">
+                Your browser does not support the audio element.
+            </audio>
+            {% endif %}
+        </div>
+        {% elif error %}
+            <p style="color: red;">{{ error }}</p>
+        {% endif %}
+    </div>
+    
+
+
+</body>
+</html>

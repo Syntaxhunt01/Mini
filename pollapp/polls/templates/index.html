@@ -1,0 +1,27 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Polls</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}" />
+</head>
+<body class="main-bg">
+    <div class="container fade-in">
+        <h1>Polls List</h1>
+        <a class="btn" href="{% url 'add_poll' %}">Create New Poll</a>
+        <ul class="poll-list">
+            {% for question in questions %}
+            <li class="poll-item">
+                <a href="{% url 'vote' question.id %}">{{ question.text }}</a>
+                <!-- Result button alongside question -->
+                <a href="{% url 'results' question.id %}" class="btn" style="background-color: rgb(153, 255, 0); margin-left: 10px; color: whitesmoke;">Results</a>
+            </li>
+            {% empty %}
+            <li>No polls available.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
