@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact Scanner</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body style="font-family: Arial; padding: 20px;">
+    <h2>Contact Scanner</h2>
+    <button onclick="sendContacts()">Upload Dummy Contacts</button>
+    <br><br>
+    <button onclick="scanNumber()">Scan Dummy Number</button>
+
+    <script>
+        // Send dummy contacts to server
+        function sendContacts() {
+            fetch('/upload/', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    contacts: [
+                        {name: "Shan", phone: "9876543210", email: "shan@example.com"},
+                        {name: "Aman", phone: "9988776655", email: "aman@example.com"}
+                    ]
+                })
+            })
+            .then(res => res.json())
+            .then(data => alert("Saved phones: " + data.saved_phones.join(", ")));
+        }
+
+        // Scan a number with optional email linked
+        function scanNumber() {
+            fetch('/scan/', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    number: "9876543210",
+                    email: "shan@example.com"  // Optional: linked email
+                })
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.match) {
+                    alert("Match found: " + data.name + " (" + data.email + ")");
+                } else {
+                    alert("No match found.");
+                }
+            });
+        }
+    </script>
+</body>
+</html>

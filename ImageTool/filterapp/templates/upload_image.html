@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Image</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+
+    <div class="container  slide-fwd-center ">
+        <h2> Upload Image Apply Filter </h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="file" name="image", required>
+            <select name="filter_type" required>
+                <option value="">-- Select Filter --</option>
+                    <option value="BLUR">Blur</option>
+                    <option value="BW">Black & White</option>
+                    <option value="SHARPEN">Sharpen</option>
+                    <option value="CONTOUR">Contour</option>
+            </select>
+            <button type="submit">Apply</button>
+        </form>
+    </div>
+    
+</body>
+</html>
