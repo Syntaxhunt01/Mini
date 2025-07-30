@@ -1,0 +1,26 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generator PDF</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <div class="container slide-in-elliptic-top-fwd ">
+        <div class="text-pop-up-top"><h2 style="font-size: 50px; color: rgb(48, 48, 48);">PDF Generator</h2></div>
+
+        <form method="post" enctype="multipart/form-data" style="margin-top: -50px;">
+            {% csrf_token %}
+
+            <input type="text" name="name" placeholder="Enter Name...." required>
+            <input type="email" name="email" placeholder="Enter Email...." required>
+            <input type="number" name="number" placeholder="Enter Number...." required>
+            <input type="file" name="image" required>
+
+            <button type="submit" download>Generate PDF</button>
+        </form>
+    </div>
+</body>
+</html>
